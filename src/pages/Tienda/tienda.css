@@ -1,0 +1,32 @@
+.product-photo {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.description p {
+  font-weight: bold;
+}
+
+.button {
+  margin-top: 20px !important;
+}
+
+.ordenar{
+  background-color: white;
+  border-radius: 5px;
+}
+
+.menu {
+  background-color: white;
+  border-radius: 5px;
+  padding-right: 12px !important;
+  padding-left: 12px !important;
+  padding-top: 2px !important;
+}
