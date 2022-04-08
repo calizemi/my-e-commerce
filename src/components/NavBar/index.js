@@ -5,7 +5,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import "./nav.css";
 import AppContext from "../../context/AppContext";
 import { IconButton } from "@mui/material";
-import MyOrder from "../../containers/MyOrder";
+import ShoppingCart from "../../containers/ShoppingCart";
 
 const Navbar = () => {
   const [status, setStatus] = useState("menu-nav");
@@ -53,6 +53,9 @@ const Navbar = () => {
                 <li>
                   <Link to="/blog">Blog</Link>
                 </li>
+                <li>
+                  <Link to="/order">Order</Link>
+                </li>
                 <li className="login">
                   <Link to="/">
                     <AccountCircleOutlinedIcon
@@ -85,7 +88,7 @@ const Navbar = () => {
         </div>
 
       </nav>
-          {toggleOrders && <MyOrder />}
+          {toggleOrders && <ShoppingCart />}
   
      
     </div>

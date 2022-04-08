@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import OrderItem from '../components/OrderItem'
-import Remove from '@mui/icons-material/RemoveCircle'
-import AppContext from '../context/AppContext';
+import AppContext from '../context/AppContext'
 import List from '@mui/icons-material/List';
-const MyOrder = () => {
+import { Link } from 'react-router-dom';
+
+
+const ShoppingCart = () => {
 	const { state } = useContext(AppContext);
 
 	const sumTotal = () => {
@@ -20,7 +22,7 @@ const MyOrder = () => {
 			</div>
 			<div className="my-order-content">
 				{state.cart.map(product => (
-					 <OrderItem product={product} key={`orderItem-${product.id}`} />
+					 <OrderItem type="Cart" product={product} key={`orderItem-${product.id}`} />
 				))}
 				<div className="order">
 					<p>
@@ -28,12 +30,14 @@ const MyOrder = () => {
 					</p>
 					<p>${sumTotal()}</p>
 				</div>
-				<button className="primary-button">
-					Checkout
-				</button>
+				<Link to="/order">
+					<button disabled={state.cart.length > 0 ?"":"disabled"} className="primary-button">
+						Checkout
+					</button>
+				</Link>
 			</div>
 		</aside>
 	);
 }
 
-export default MyOrder;
+export default ShoppingCart;
