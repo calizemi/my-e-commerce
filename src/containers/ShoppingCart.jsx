@@ -1,23 +1,32 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import OrderItem from '../components/OrderItem'
 import AppContext from '../context/AppContext'
-import List from '@mui/icons-material/List';
-import { Link } from 'react-router-dom';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import "../pages/Order/shoppingCart.css"
 
-
-const ShoppingCart = () => {
+const ShoppingCart = ({navToggle}) => {
 	const { state } = useContext(AppContext);
 
-	const sumTotal = () => {
-		const reducer = (accumalator, currentValue) => accumalator + currentValue.price;
-		const sum = state.cart.reduce(reducer, 0);
-		return sum;
-	}
+
+	var grandTotal = function(arr) {
+		return arr.reduce((sum, i) => {
+		  return sum + (i.precio * i.quantity)
+		}, 0)
+	  };
+
+	  const navigate = useNavigate() //Importar de React-router-dom
+
+	  const handleCheckOut = ()=>{
+		navToggle()
+		return navigate("/order")// Navegar
+	  }
+
 
 	return (
 		<aside className="MyOrder">
-			<div className="title-container">
-				<List />
+			<div className="title-container" style={{marginBottom:"1rem"}}>
+			<LocalGroceryStoreIcon />
 				<p className="title">My order</p>
 			</div>
 			<div className="my-order-content">
@@ -28,13 +37,11 @@ const ShoppingCart = () => {
 					<p>
 						<span>Total</span>
 					</p>
-					<p>${sumTotal()}</p>
+					<p style={{fontSize:"1rem"}}> S/ {grandTotal(state.cart)}</p>
 				</div>
-				<Link to="/order">
-					<button disabled={state.cart.length > 0 ?"":"disabled"} className="primary-button">
+					<button onClick={handleCheckOut} disabled={state.cart.length > 0 ?"":"disabled"} className="primary-button">
 						Checkout
 					</button>
-				</Link>
 			</div>
 		</aside>
 	);

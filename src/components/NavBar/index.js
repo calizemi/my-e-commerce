@@ -23,6 +23,11 @@ const Navbar = () => {
       ? setToggleIcon("nav__toggler toggle")
       : setToggleIcon("nav__toggler");
   };
+
+  const handleToggleOrders = ()=>{
+    setToggleOrders(!toggleOrders)
+  }
+
 //Begin : Fmarin
   const { state } = useContext(AppContext);
 
@@ -70,10 +75,8 @@ const Navbar = () => {
           </div>
           <div className="btn-login">
             <div>
-              <IconButton  onClick={() => setToggleOrders(!toggleOrders)} aria-label="fingerprint" color="secondary">
-              <ShoppingBasketOutlinedIcon
-                  sx={{ fontSize: 30, color: "#73548B", marginRight:2 }}
-                />
+              <IconButton  onClick={handleToggleOrders} aria-label="fingerprint" color="secondary">
+              <ShoppingBasketOutlinedIcon/>
                       {state.cart.length > 0 ? <div>{state.cart.length}</div> : null}
               </IconButton>
 
@@ -88,7 +91,7 @@ const Navbar = () => {
         </div>
 
       </nav>
-          {toggleOrders && <ShoppingCart />}
+          {toggleOrders && <ShoppingCart  navToggle={handleToggleOrders} />}
   
      
     </div>

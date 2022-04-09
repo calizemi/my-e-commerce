@@ -12,8 +12,6 @@ import "./tienda.css";
 const Tienda = () => {
   const [products, setProducts] = useState([]);
 
-  
-
   const fetchProducts = async () => {
     const data =await getProductToys ();
     
@@ -29,7 +27,7 @@ const Tienda = () => {
   const { addToCart } = useContext(AppContext);
 
 	const handleClick = item => {
-		addToCart(item);
+		addToCart({...item,quantity: 1});
 	}
 
   //End : FMarinT
